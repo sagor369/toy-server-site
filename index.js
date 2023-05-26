@@ -21,6 +21,22 @@ async function run() {
         const reviewDB = client.db("reviewDB");
         const reviews = reviewDB.collection("reviews");
 
+        // home page toy url 
+
+        app.get('/review', async(req, res) =>{
+            const client = reviews.find()
+            const result = await client.toArray()
+            res.send(result)
+    
+        })
+
+    app.get('/data', async(req,res) =>{
+        const result = await clientCategory.estimatedDocumentCount();
+        res.send({totalData: result })
+    })
+
+
+
 
 
 
