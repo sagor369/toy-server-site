@@ -68,7 +68,34 @@ async function run() {
         })
 
 
+        app.get('/toys/:item', async(req, res) =>{
+            const itemCategory = req.params.item
+            console.log(itemCategory)
+            const query = {
+                subCategory: itemCategory
+            }
+            const options = {
+                projection: { pictureUrl: 1, name: 1, price: 1, rating: 1, _id: 1 },
+            }
+            const client = clientCategory.find(query, options)
+            const result = await client.toArray()
+            res.send(result)
+    
+        })
 
+        app.get('/user/:email', async(req, res) =>{
+            const userEmail = req.params.email
+            const myToy = {
+                sellerEmail: userEmail
+            }
+            const options = {
+                projection: { pictureUrl: 1,sellerName: 1, sellerEmail: 1,  name: 1, price: 1, quantity: 1,subCategory: 1, _id: 1 },
+            }
+            const client = clientCategory.find(myToy, options)
+            const result = await client.toArray()
+            res.send(result)
+    
+        })
 
 
 
