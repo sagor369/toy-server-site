@@ -35,7 +35,24 @@ async function run() {
         res.send({totalData: result })
     })
 
+    app.get('/toys', async(req, res) =>{
+        console.log(req.query)
+        const page = parseInt(req.query.page) || 0
+        const perpage = parseInt(req.query.perPage)
+        const skip = page * perpage
+        console.log(skip)
+            const result = await clientCategory.find().skip(skip).limit(perpage).toArray()
+            res.send(result)
+    
+        })
 
+
+    app.get('/toys/sort', async(req, res) =>{
+            const client = clientCategory.find({}, { sort: { price: 1 }})
+            const result = await client.toArray()
+            res.send(result)
+    
+        })
 
 
 
