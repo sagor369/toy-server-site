@@ -10,6 +10,18 @@ app.use(cors())
 app.use(express.json())
 
 
+async function run() {
+    try {
+        client.connect()
+
+
+        const database = client.db("toysCategory");
+        const clientCategory = database.collection("category");
+
+        const reviewDB = client.db("reviewDB");
+        const reviews = reviewDB.collection("reviews");
+
+
 
 
 
