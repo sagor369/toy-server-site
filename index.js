@@ -54,6 +54,20 @@ async function run() {
     
         })
 
+        app.get('/toy/:id', async(req, res)=>{
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) }
+                    
+                    const options = {
+                        projection: { pictureUrl: 1, quantity:1,  name: 1, price: 1, rating: 1, _id: 1, detailDescription: 1                                },
+                    }
+                    const client = clientCategory.find(query, options)
+                    const result = await client.toArray()
+                    res.send(result)
+            
+        })
+
+
 
 
 
